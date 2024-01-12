@@ -1,0 +1,18 @@
+version: "2"
+cloud:
+  # Replace <PROJECT_ID> with your project ID from the sqlc Cloud dashboard
+  project: "01HK2GYJ91CCGMMZS4DT35PYA5"
+sql:
+  - engine: "postgresql"
+    queries: "./db/query/"
+    schema: "./db/migration/"
+    gen:
+      go:
+        package: "db"
+        out: "./db/sqlc/"
+        sql_package: "lib/pq"
+
+
+# execute this command to set auth token generated from sqlc Cloud dashboard
+# export SQLC_AUTH_TOKEN=sqlc_01HK2H8MWE7PTA921AMBG21BJD
+# sqlc_01HK5H0J8NZMG81H3GA9GCHE7C

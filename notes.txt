@@ -1,0 +1,9 @@
+1. FOR UPDATE:  When you use FOR UPDATE in a SELECT statement, it acquires a row-level lock on the selected rows. This lock prevents other transactions from acquiring a conflicting lock on the same rows until the current transaction is committed or rolled back.
+                The row-level lock acquired with FOR UPDATE is typically used when you intend to modify the selected rows later in the transaction. It ensures that no other transactions modify or lock the same rows concurrently.
+
+2. FOR NO KEY UPDATE: FOR NO KEY UPDATE is similar to FOR UPDATE in that it also acquires a row-level lock on the selected rows, preventing other transactions from acquiring a conflicting lock.
+                      The difference is in the type of lock acquired. With FOR NO KEY UPDATE, PostgreSQL acquires a row-level lock without specifically requesting a key-range lock. This means that it doesn't try to lock beyond the selected rows, and it is more relaxed in terms of the type of lock acquired compared to FOR UPDATE.
+                      This can be useful in scenarios where you want to ensure that selected rows are not modified by other transactions while still allowing other transactions to insert new rows.
+
+3. Use Cases for FOR NO KEY UPDATE: It can be beneficial when you want to prevent other transactions from modifying the selected rows but don't need the additional strictness of a key-range lock.
+                                    It is often used when you want to ensure consistency in read-modify-write operations but don't want to block other transactions from inserting new rows.
